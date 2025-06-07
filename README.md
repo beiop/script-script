@@ -1,5 +1,5 @@
 # script-script
-various scripts and  for editing multimedia files
+various scripts for editing multimedia files
 
 Exiftool backend? Darktable CLI?
 
@@ -21,6 +21,10 @@ Exiftool backend? Darktable CLI?
 ## FFMPEG
 - Images to Timelapse generator
 - Panorama Image to video scroll bac and forth
+- Concatenate multiple videos into a single video
+
+## Audio Editing
+- 
 
 ## Other
 - Support for external drive/iPhone auto backup jobs
