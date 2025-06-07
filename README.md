@@ -1,9 +1,9 @@
 # script-script
-various scripts and stuff
+various scripts and  for editing multimedia files
 
 Exiftool backend? Darktable CLI?
 
-EXIF Editing
+## EXIF Editing
 - View and export Exif, GPS, IPTC, XMP metadata tags
 - Convert HEIC photos to JPG photos
 - Edit, add, remove Exif, GPS, IPTC, TIFF, XMP and all other metadata tags
@@ -11,18 +11,22 @@ EXIF Editing
 - Import/Export Exif, GPS, IPTC, TIFF, XMP between photos
 - Quickly and easily change the camera date and creation date
 
-Photo Editing
+## Photo Editing
 - Built in Panorama stitcher (Hugin Plugin?)
 - Instagram Panorama Slicer
 - Portrait to Landscape + Landscape to portrait Matted backgrounds with aspect ration output picker
 - Auto edit photos based on camera model and color profile (send to darktable?)
-- - Find and delete duplicate photos in photo library
+- Find and delete duplicate photos in photo library
 
-Other
+## FFMPEG
+- Images to Timelapse generator
+- Panorama Image to video scroll bac and forth
+
+## Other
 - Support for external drive/iPhone auto backup jobs
 - Immich Photo Library Sync
 
-Other 2 
+## Other 2 
 - Rename photos using photo metadata tag(s)
 - Add date and timestamps, places, and copyright watermark
 - Merge metadata from Google Takeout ison files and xmp files to photos
