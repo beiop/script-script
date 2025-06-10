@@ -18,6 +18,7 @@ Exiftool backend? Darktable CLI?
 - Auto edit photos based on camera model and color profile (send to darktable?)
 - Find and delete duplicate photos in photo library
 - Sort photos in folders by YYYY-MM-DD using https://github.com/andrewning/sortphotos
+- Instagram Post Panorama Slicer
 
 ## FFMPEG
 - Images to Timelapse generator
