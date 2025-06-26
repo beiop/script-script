@@ -1,6 +1,8 @@
 # script-script
 various scripts for editing multimedia files
 
+- reencode&concatinate.py works, everything else afaik doesn't.
+
 Exiftool backend? Darktable CLI?
 
 ## EXIF Editing
