@@ -4,7 +4,6 @@ import platform
 from win32_setctime import setctime
 
 import filedate
-
 #File = filedate.File(input())
 
 #from pathlib import Path
@@ -36,8 +35,9 @@ def setc(path_to_file):
     File = filedate.File(path_to_file)
     File.created  = "01.01.2000 12:00"
 
-print(getc("macs are trash"))
-setc("macs are trash")
-print(getc("macs are trash"))
+#print(getc("macs are trash"))
+#setc("macs are trash")
+#print(getc("macs are trash"))
+
 
 #setctime("bean.txt", 1561675987.509)
