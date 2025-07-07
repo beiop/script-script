@@ -1,0 +1,15 @@
+Font==1.1.1
+freetype-py==2.4.0
+messagebox==0.1.0
+numpy==2.1.0
+opencv-python==4.10.0.84
+pillow==11.2.1
+PySide6==6.9.1
+PySide6_Addons==6.9.1
+PySide6_Essentials==6.9.1
+python-tkdnd==0.2.1
+shiboken6==6.9.1
+tk==0.1.0
+tkinterdnd2==0.4.3
+tkinterdnd2-universal==1.7.3
+ttkwidgets==0.13.0
