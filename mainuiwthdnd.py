@@ -40,6 +40,10 @@ from PySide6.QtWidgets import (
     QDialog, QComboBox, QStackedLayout
 )
 
+#Roli Additions
+from subprocess import call
+from assets.epoch import ask_for_offset
+
 ###############################################################################
 # Constants
 ###############################################################################
@@ -240,6 +244,9 @@ class MainWindow(QMainWindow):
 
         btn_row.addStretch()
 
+        # Store the last selected files globally for operation functions to access
+        self.selected_files = []
+
     # ---------------------------------------------------------------------
     # Actions
     # ---------------------------------------------------------------------
@@ -254,8 +261,11 @@ class MainWindow(QMainWindow):
         self.handle_files(paths)
 
     def handle_files(self, paths: Sequence[str]):
+        global last_selected_files
         if not paths:
             self.preview.clear()
+            self.selected_files = []
+            last_selected_files = []
             return
 
         if len(paths) == 1 and os.path.isdir(paths[0]):
@@ -265,6 +275,8 @@ class MainWindow(QMainWindow):
                 for f in os.listdir(paths[0])
                 if is_image(f)
             ]
+        self.selected_files = paths
+        last_selected_files = paths
         self.preview.show_images(paths)
 
     def open_operation_dialog(self):
@@ -279,15 +291,90 @@ class MainWindow(QMainWindow):
 
 
 def operation_func_1():
-    print("Running operation 1")
+    print("Operation 1 files:", last_selected_files)
+    offset = ask_for_offset()  # Call the epoch offset calculator
+    import os
+    import platform
+
+    from win32_setctime import setctime
+
+    import filedate
+    #File = filedate.File(input())
+
+    #from pathlib import Path
+
+    #pathlist = Path("test").glob('**/*.asm')
+    #for path in pathlist:
+    #    # because path is object not string
+    #    path_in_str = str(path)   
+    #    # print(path_in_str)
+    from datetime import datetime
+
+    def unix_to_str(unix_time: int) -> str:
+        return datetime.fromtimestamp(unix_time).strftime('%m/%d/%Y %H:%M:%S')
+    def str_to_unix(date_str: str) -> int:
+        return int(datetime.strptime(date_str, '%m/%d/%Y %H:%M:%S').timestamp())
+
+
+
+
+    def getc(path_to_file):
+        """
+        Try to get the date that a file was created, falling back to when it was
+        last modified if that isn't possible.
+        See http://stackoverflow.com/a/39501288/1709587 for explanation.
+        """
+        if platform.system() == 'Windows':
+            return os.path.getctime(path_to_file)
+        else:
+            stat = os.stat(path_to_file)
+            
+            try:
+                return stat.st_birthtime
+            except AttributeError:
+                # We're probably on Linux. No easy way to get creation dates here,
+                # so we'll settle for when its content was last modified.
+
+                return stat.st_mtime
+    def setc(path_to_file,unix_time_in):
+        
+        # Create the new directory
+        os.makedirs('quarantined time travelers', exist_ok=True)
+        #extract the filename from the path
+        filename = os.path.basename(path_to_file)
+        for file in last_selected_files:
+            if platform.system() == 'Windows':
+                os.system(f'copy {file} quarantined time travelers\\{filename}')  # For Windows
+                File = filedate.File(path_to_file)
+                File.created  = "01.01.2000 12:00"
+            elif platform.system() == "Darwin":  # macOS
+                # Copy the file using os.system
+                os.system(f'cp {file} "quarantined time travelers/{filename}"')  # For Unix/Linux
+                # Define the file path and the desired creation date
+                date = unix_to_str(unix_time_in)  # Convert to the desired date format
+                # Construct the command
+                command = f'SetFile -d "{date}" "quarantined time travelers/{filename}"'
+                # Execute the command
+                call(command, shell=True)
+                print(getc("quarantined time travelers/" + filename))
+
+    #print(getc("macs are trash"))
+    #setc("macs are trash")
+    #print(getc("macs are trash"))
+
+
+    #setctime("bean.txt", 1561675987.509)
+    for file in last_selected_files:
+        getc(file) + offset
+        setc(file, getc(file) + offset)
 
 
 def operation_func_2():
-    print("Running operation 2")
+    print("Operation 2 files:", last_selected_files)
 
 
 def operation_func_3():
-    print("Running operation 3")
+    print("Operation 3 files:", last_selected_files)
 
 
 ###############################################################################
